@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Entregas Cóndor Ltda. | Catálogo de productos</title><style>
+:root {
+ --green-dark: #1F4D3A;
+ --green: #2E6B52;
+ --green-soft: #E8F0E9;
+ --page: #F5F7F4;
+ --text: #2B2B2B;
+ --muted: #52645A;
+ --line: #DCE5DB;
+ --terracotta: #AE512D;
+ --terracotta-hover: #8F3E20;
+}
+* {box-sizing: border-box}
+body {font-family:Arial,Helvetica,sans-serif;margin:0;color:var(--text);background:var(--page);font-size:15px}
+header {background:var(--green-dark);color:#fff;padding:22px max(5vw,30px);display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid #D3B68A;gap:20px}
+header strong {font-size:22px;font-weight:700;letter-spacing:.2px;white-space:normal}
+nav {font-size:13px;color:#E8F0E9;text-align:right}
+main {max-width:1040px;margin:auto;padding:32px 18px 52px}
+.lead {display:flex;justify-content:space-between;gap:25px;align-items:center;margin-bottom:26px;padding:8px 0 13px;border-bottom:1px solid var(--line)}
+.lead h1 {font-size:30px;line-height:1.16;margin:0 0 12px;color:var(--green-dark);font-weight:700}
+.lead p {max-width:670px;color:var(--muted);line-height:1.55;margin:0}
+.products {display:grid;grid-template-columns:repeat(2,1fr);gap:19px}
+.card {background:#fff;border:1px solid var(--line);border-radius:9px;padding:22px;box-shadow:0 3px 10px rgba(33,70,48,.05)}
+.illustration {height:138px;background:linear-gradient(180deg,#F1F5EF,#E8EEE5);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:17px}
+.bottle {position:relative;background:#669C76;width:73px;height:105px;border-radius:12px 12px 16px 16px;border:2px solid #427450}
+.bottle:before {content:'';position:absolute;width:35px;height:13px;left:17px;top:-15px;background:#315B40;border-radius:4px 4px 0 0}
+.bottle:after {content:'ASEO';position:absolute;top:40px;left:10px;width:48px;text-align:center;background:#fff;color:#315B40;padding:8px 0;font-size:10px;font-weight:bold}
+.bottle.orange {background:#D5A06F;border-color:#AA7244}
+.bottle.orange:before {background:#98613C}
+.bottle.orange:after {color:#85502C}
+.card h3 {margin:0 0 8px;font-size:19px;color:var(--green-dark)}
+.card p {margin:0 0 9px;font-size:13px;color:var(--muted);line-height:1.45}
+.price {font-size:21px;font-weight:700;margin:12px 0 16px;color:#304F3A}
+.line {display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.line label {color:#405345;font-size:13px}
+input {width:65px;padding:10px;border:1px solid #BCCBBE;border-radius:5px;background:#fff;color:var(--text);font-size:14px}
+input:focus {outline:2px solid #80AE8D;outline-offset:1px}
+button {background:var(--terracotta);border:0;color:#fff;padding:11px 18px;border-radius:5px;font-weight:700;cursor:pointer;font-size:13px}
+button:hover {background:var(--terracotta-hover)}
+button:focus-visible {outline:2px solid var(--green-dark);outline-offset:3px}
+.sidebar {background:#fff;margin-top:21px;border:1px solid var(--line);padding:20px 22px;border-radius:9px;border-left:4px solid var(--green)}
+.sidebar h2 {font-size:19px;margin:0 0 12px;color:var(--green-dark)}
+.sidebar p {margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+.fine {margin-top:22px;color:#637367;font-size:12px}
+@media(max-width:680px){header{padding:19px 20px}header strong{font-size:19px}.products{grid-template-columns:1fr}.lead{display:block}.lead h1{font-size:27px}nav{display:none}}
+</style></head><body><header><strong>ENTREGAS CÓNDOR LTDA.</strong><nav>Productos de aseo   |   Bogotá D. C.</nav></header><main><section class="lead"><div><h1>Productos de aseo<br/>para tu hogar</h1><p>Selecciona los productos y las cantidades que necesitas. El carrito muestra el valor de los artículos elegidos.</p></div></section><div class="products"><article class="card"><div class="illustration"><div class="bottle"></div></div><h3>Detergente líquido 1 L</h3><p>Referencia ASEO-001 · Disponibilidad: 30 unidades</p><div class="price">$18.000 COP</div><div class="line"><label for="c1">Unidades</label><input id="c1" max="30" min="1" type="number" value="1"/><button onclick="agregar('Detergente líquido 1 L',18000,'c1')">Agregar</button></div></article><article class="card"><div class="illustration"><div class="bottle orange"></div></div><h3>Desinfectante multiusos 1 L</h3><p>Referencia ASEO-002 · Disponibilidad: 16 unidades</p><div class="price">$12.000 COP</div><div class="line"><label for="c2">Unidades</label><input id="c2" max="16" min="1" type="number" value="1"/><button onclick="agregar('Desinfectante multiusos 1 L',12000,'c2')">Agregar</button></div></article></div><aside class="sidebar"><h2>Tu carrito</h2><p id="carrito">No se han agregado productos.</p></aside><p class="fine">Entregas Cóndor Ltda. · Productos de aseo · Bogotá D. C.</p></main><script>let items=[];function agregar(n,p,id){let q=Number(document.getElementById(id).value);if(!Number.isInteger(q)||q<1){alert('Ingrese una cantidad válida.');return;}items.push({n,p,q});let total=items.reduce((a,x)=>a+x.p*x.q,0);document.getElementById('carrito').textContent=items.map(x=>x.q+' × '+x.n).join(' · ')+' | Subtotal: $'+total.toLocaleString('es-CO')+' COP';}</script></body></html>
